@@ -12,6 +12,9 @@ import lenovo_logo from './images/logo-lenovo.jpg';
 import samsung_logo from './images/logo-samsung.jpg';
 import meizu_logo from './images/logo-meizu.jpg';
 import xiaomi_logo from './images/logo-xiaomi.jpg';
+import huawei_logo from './images/logo-huawei.gif';
+import beats_logo from './images/logo-beats.svg';
+
 
 // управляющий объект категорий
 const categories = {
@@ -43,6 +46,18 @@ const categories = {
         ram: ['lt 2gb', '2gb', '3gb', '4gb', '6gb'],
         'main camera': ['lt 12mpx', '13mpx+'],
         'frontal camera': ['lt 5mpx', '5mpx+'],
+    },
+    headphones: {
+        brand: [
+            {name: 'meizu', img: meizu_logo},
+            {name: 'xiaomi', img: xiaomi_logo},
+            {name: 'huawei', img: huawei_logo},
+            {name: 'beats', img: beats_logo}
+        ],
+        'Wearing Type': ['in-ear', 'in-ear with ear hook', 'ear hook', 'neckband', 'headband'],
+        connectivity: ['wireless'],
+        'connecting interface': ['3.5mm', '2.5mm', 'micro usb', 'tf card'],
+        application: ['DJ', 'sport', 'running', 'gaming']
     }
 }
 function _getCategoriesCopy(){
