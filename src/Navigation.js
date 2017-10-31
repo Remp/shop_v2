@@ -2,75 +2,8 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import './styles/navigation.css';
 import './styles/navigation_product.css';
-import FontAwesome from 'react-fontawesome';
 import { categories } from './categories.js';
 
-// import hp_logo from './images/logo-hp.png';
-// import apple_logo from './images/logo-apple.png';
-// import asus_logo from './images/logo-asus.jpg';
-// import acer_logo from './images/logo-acer.jpg';
-// import lenovo_logo from './images/logo-lenovo.jpg';
-// import samsung_logo from './images/logo-samsung.jpg';
-// import meizu_logo from './images/logo-meizu.jpg';
-// import xiaomi_logo from './images/logo-xiaomi.jpg';
-// import huawei_logo from './images/logo-huawei.gif';
-// import beats_logo from './images/logo-beats.svg';
-
-
-// управляющий объект категорий
-// const categories = {
-//     laptop: {
-//         brand: [
-//             {name: 'hp', img: hp_logo},
-//             {name: 'apple', img: apple_logo},
-//             {name: 'asus', img: asus_logo},
-//             {name: 'acer', img: acer_logo},
-//             {name: 'lenovo', img: lenovo_logo}
-//         ],
-//         diagonal: ['9 - 12.5', '13', '14', '15 - 15.6', '16 - 17'],
-//         cpu: ['intel', 'AMD', 'intel core i3', 'intel core i5', 'intel core i7'],
-//         gpu: ['nVidia GeForce', 'AMD Radeon'],
-//         os: ['windows', 'linux', 'without os'],
-//         case: ['metal', 'plastic', 'combined'],
-//         ram: ['2gb - 8gb', '9gb - 16gb', '32gb+']
-//     },
-//     smartphone: {
-//         brand: [
-//             {name: 'samsung', img: samsung_logo},
-//             {name: 'apple', img: apple_logo},
-//             {name: 'meizu', img: meizu_logo},
-//             {name: 'lenovo', img: lenovo_logo},
-//             {name: 'Xiaomi', img: xiaomi_logo}
-//         ],
-//         diagonal: ['4.1 - 4.5', '4.6 - 5', '5.1 - 5.5', '5.6 - 6', '6+'],
-//         'battery capacity': ['lt 2999mAh', '3000 - 3999mAh', '4000+ mAh'],
-//         ram: ['lt 2gb', '2gb', '3gb', '4gb', '6gb'],
-//         'main camera': ['lt 12mpx', '13mpx+'],
-//         'frontal camera': ['lt 5mpx', '5mpx+'],
-//     },
-//     headphones: {
-//         brand: [
-//             {name: 'meizu', img: meizu_logo},
-//             {name: 'xiaomi', img: xiaomi_logo},
-//             {name: 'huawei', img: huawei_logo},
-//             {name: 'beats', img: beats_logo}
-//         ],
-//         'Wearing Type': ['in-ear', 'in-ear with ear hook', 'ear hook', 'neckband', 'headband'],
-//         connectivity: ['wireless'],
-//         'connecting interface': ['3.5mm', '2.5mm', 'micro usb', 'tf card'],
-//         application: ['DJ', 'sport', 'running', 'gaming']
-//     }
-// }
-function _getCategoriesCopy(){
-    let list = {};
-    for (let cat in categories){
-        let icat = categories[cat];
-        let elem = {};
-        for (let clasf in icat){
-            elem[clasf] = icat[clasf].slice();
-        }
-    }
-}
 
 class Navigation extends Component{
 
@@ -109,23 +42,27 @@ class ProductsPanel extends Component{
             let list = {};
             for (let cat in categories){
                 const elem = categories[cat];
-                let cont = {}
+                let cont = {data: {}, isChecked: false}
                 for (let icat in elem){
                     const ielem = elem[icat];
                     let icont = {};
                     for (let itm = 0; itm < ielem.length; itm++){
                         icont[icat === 'brand' ? ielem[itm].name : ielem[itm]] = false;
                     }
-                    cont[icat] = icont;
+                    cont.data[icat] = icont;
                 }
                 list[cat] = cont;
             }         
             return list;
         })();
+        // значение по умолчанию
+        for (let cat in check_list){
+            check_list[cat].isChecked = true;
+            break;
+        }
         this.state = {
             check_list: check_list,
-            current: "laptop"
-        }     
+        } 
     }
     _reset_check_list(){
         let list = {};
@@ -146,25 +83,23 @@ class ProductsPanel extends Component{
     }
     // передается в CategoryContent --> Brand и FilterItem, вызывается при отметке (при отметке фильтра меняем карту фильтров)
     onCheck_handler(parent, category, name){
-        let check_list = ([this.state.check_list].slice())[0];
+        let check_list = Object.assign({}, this.state.check_list);
         check_list[parent][category][name] = !check_list[parent][category][name];
         this.setState({check_list: check_list});
     }
-    category_click_handler(e){
-        // из-за неопределенного количества элементов внутри li, пришлось делать такую реализацию
-        $('.categories-bar > ul > li').removeClass('checked');
-        let elem = $(e.target);
-        if (elem.not('li').length)
-            elem = elem.parent('li');
-        elem.toggleClass('checked');
-
-        $('.brand').add('.filter-bar > ul > li').css({transition: '0s'});
-        this.setState({current: e.target.dataset.category});  
-        $('.brand').add('.filter-bar > ul > li').css({transition: ''});        
+    // передается в CategoryName
+    category_click_handler(cat){
+        const check_list = Object.assign({}, this.state.check_list);
+        for (let c in check_list){
+            if (check_list[c].data)
+                check_list[c].isChecked = false;            
+        }
+        check_list[cat].isChecked = true;   
+        this.setState({check_list: check_list})     
     }
     // передается в CategoriesBtnSet
     btnReset_handler_click(e){
-        const check_list = this.state.check_list;
+        const check_list = Object.assign({}, this.state.check_list);
         for (let clasf in check_list[this.state.current]){
             const elem = check_list[this.state.current][clasf];
             for (let name in elem)
@@ -173,25 +108,44 @@ class ProductsPanel extends Component{
         this.setState({check_list: check_list});
     }
     render(){
+        const handler = (cat) => this.category_click_handler(cat);
+        const current = (() => {
+            for (let c in this.state.check_list)
+                if (this.state.check_list[c].isChecked)
+                    return c;
+        })();
         return(
             <div ref={(el) => this.panel = el} className="products-panel">
                 <div className="categories-bar">
                     <h2>Categories</h2>
                     <ul>
-                        <li className='checked' onClick={(e) => this.category_click_handler(e)} data-category='laptop'>
-                            <FontAwesome name='laptop' />Laptops
-                        </li>
-                        <li onClick={(e) => this.category_click_handler(e)} data-category='smartphone'>
-                            Smartphones
-                        </li>
-                        <li onClick={(e) => this.category_click_handler(e)} data-category='headphones'>
-                            Headphones
-                        </li>
+                        <CategoryName check_handler={handler} 
+                                    check_list={this.state.check_list} name='Laptops' faclass='fa fa-laptop' 
+                                    category='laptop'/>
+                        <CategoryName check_handler={handler} 
+                                    check_list={this.state.check_list} name='Smartphones' faclass='fa fa-laptop' 
+                                    category='smartphone'/>
+                        <CategoryName check_handler={handler} 
+                                    check_list={this.state.check_list} name='Headphones' faclass='fa fa-laptop' 
+                                    category='headphones'/>
                     </ul>
                     <CategoriesBtnSet btnReset_click_handler={(e) => this.btnReset_handler_click(e)} />
                 </div>
-                <CategoryContent check_list={this.state.check_list} onCheck_handler={(p, c, n) => this.onCheck_handler(p, c, n)} current={this.state.current} />
+                <CategoryContent check_list={this.state.check_list} onCheck_handler={(p, c, n) => this.onCheck_handler(p, c, n)} current={current} />
             </div>
+        )
+    }
+}
+class CategoryName extends Component{
+    onClick_handler(){
+        this.props.check_handler(this.props.category);
+    }
+    render(){
+        const isChecked = this.props.check_list[this.props.category].isChecked;
+        return (
+            <li data-category={this.props.category} className={isChecked ? 'checked' : ''} onClick={() => this.onClick_handler()} data-category='laptop'>
+                <i className={this.props.faclass} />{this.props.name}
+            </li>
         )
     }
 }
@@ -203,7 +157,7 @@ class CategoryContent extends Component{
         const brands = current['brand'].map((el) => {
             const parent = this.props.current;
             const name = el.name;            
-            return <Brand isChecked={this.props.check_list[parent]['brand'][name]} onChecking={(p, c, n) => this.props.onCheck_handler(p, c, n)} parent={parent} category='brand' name={name} img={el.img} />
+            return <Brand isChecked={this.props.check_list[parent].data['brand'][name]} onChecking={(p, c, n) => this.props.onCheck_handler(p, c, n)} parent={parent} category='brand' name={name} img={el.img} />
         });
         
         // создаем FilterBar'ы основываясь на объекте categories
@@ -217,7 +171,7 @@ class CategoryContent extends Component{
                 const parent = this.props.current;
                 const name = el;
                 return (
-                    <FilterItem isChecked={this.props.check_list[parent][n][name]} onChecking={(p, c, n) => this.props.onCheck_handler(p, c, n)} parent={this.props.current} category={n} name={el} />
+                    <FilterItem isChecked={this.props.check_list[parent].data[n][name]} onChecking={(p, c, n) => this.props.onCheck_handler(p, c, n)} parent={this.props.current} category={n} name={el} />
                 )
             });
             filter_bars[counter++] = <FilterBar name={n} items={elems} />
@@ -300,5 +254,5 @@ class CategoriesBtnSet extends Component{
 export default Navigation;
 
 /*
-data-category - используется в качестве указания для фильтрации, совместно с классом checked
+data-category - используется в качестве указания для фильтрации
  */
