@@ -3,6 +3,7 @@ import $ from 'jquery';
 import './styles/navigation.css';
 import './styles/navigation_product.css';
 import { categories } from './categories.js';
+import 'font-awesome/css/font-awesome.min.css';
 
 
 class Navigation extends Component{
@@ -84,7 +85,7 @@ class ProductsPanel extends Component{
     // передается в CategoryContent --> Brand и FilterItem, вызывается при отметке (при отметке фильтра меняем карту фильтров)
     onCheck_handler(parent, category, name){
         let check_list = Object.assign({}, this.state.check_list);
-        check_list[parent][category][name] = !check_list[parent][category][name];
+        check_list[parent].data[category][name] = !check_list[parent].data[category][name];
         this.setState({check_list: check_list});
     }
     // передается в CategoryName
@@ -100,10 +101,17 @@ class ProductsPanel extends Component{
     // передается в CategoriesBtnSet
     btnReset_handler_click(e){
         const check_list = Object.assign({}, this.state.check_list);
-        for (let clasf in check_list[this.state.current]){
-            const elem = check_list[this.state.current][clasf];
-            for (let name in elem)
-                elem[name] = false;
+        for (let categs in check_list){
+            if (check_list[categs].isChecked){
+                const clasf = check_list[categs].data;
+                for (let cat in clasf){
+                    const elem = clasf[cat];
+                    for (let name in elem)
+                        elem[name] = false;
+                }
+                break;
+            } 
+        this.setState({check_list: check_list});               
         }
         this.setState({check_list: check_list});
     }
@@ -123,10 +131,10 @@ class ProductsPanel extends Component{
                                     check_list={this.state.check_list} name='Laptops' faclass='fa fa-laptop' 
                                     category='laptop'/>
                         <CategoryName check_handler={handler} 
-                                    check_list={this.state.check_list} name='Smartphones' faclass='fa fa-laptop' 
+                                    check_list={this.state.check_list} name='Smartphones' faclass='fa fa-mobile' 
                                     category='smartphone'/>
                         <CategoryName check_handler={handler} 
-                                    check_list={this.state.check_list} name='Headphones' faclass='fa fa-laptop' 
+                                    check_list={this.state.check_list} name='Headphones' faclass='fa fa-headphones' 
                                     category='headphones'/>
                     </ul>
                     <CategoriesBtnSet btnReset_click_handler={(e) => this.btnReset_handler_click(e)} />
@@ -143,7 +151,7 @@ class CategoryName extends Component{
     render(){
         const isChecked = this.props.check_list[this.props.category].isChecked;
         return (
-            <li data-category={this.props.category} className={isChecked ? 'checked' : ''} onClick={() => this.onClick_handler()} data-category='laptop'>
+            <li data-category={this.props.category} className={isChecked ? 'checked' : ''} onClick={() => this.onClick_handler()}>
                 <i className={this.props.faclass} />{this.props.name}
             </li>
         )

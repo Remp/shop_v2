@@ -47,6 +47,10 @@
             color: #EB1717;
             background-color: rgba(33, 40, 54, 0.53)
         }
+        .categories-bar > ul > li i{
+            width: 1.5rem;
+            text-align: center;
+        }
 .categories-content{
     flex: 1;
     background-color: rgba(33, 40, 54, 0.53);
