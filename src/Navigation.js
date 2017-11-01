@@ -111,7 +111,6 @@ class ProductsPanel extends Component{
                 }
                 break;
             } 
-        this.setState({check_list: check_list});               
         }
         this.setState({check_list: check_list});
     }
