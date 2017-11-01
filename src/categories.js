@@ -52,3 +52,21 @@ export const categories = {
         application: ['DJ', 'sport', 'running', 'gaming']
     }
 }
+//карта отмеченных фильтров
+export const check_list = (() => {
+    let list = {};
+    for (let cat in categories){
+        const elem = categories[cat];
+        let cont = {data: {}, isChecked: false}
+        for (let icat in elem){
+            const ielem = elem[icat];
+            let icont = {};
+            for (let itm = 0; itm < ielem.length; itm++){
+                icont[icat === 'brand' ? ielem[itm].name : ielem[itm]] = false;
+            }
+            cont.data[icat] = icont;
+        }
+        list[cat] = cont;
+    }         
+    return list;
+})();

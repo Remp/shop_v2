@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import './styles/navigation.css';
 import './styles/navigation_product.css';
-import { categories } from './categories.js';
+import { categories, check_list } from './categories.js';
 import 'font-awesome/css/font-awesome.min.css';
 
 
@@ -38,49 +38,16 @@ class Navigation extends Component{
 class ProductsPanel extends Component{
     constructor(){
         super();
-        //карта отмеченных фильтров
-        const check_list = (() => {
-            let list = {};
-            for (let cat in categories){
-                const elem = categories[cat];
-                let cont = {data: {}, isChecked: false}
-                for (let icat in elem){
-                    const ielem = elem[icat];
-                    let icont = {};
-                    for (let itm = 0; itm < ielem.length; itm++){
-                        icont[icat === 'brand' ? ielem[itm].name : ielem[itm]] = false;
-                    }
-                    cont.data[icat] = icont;
-                }
-                list[cat] = cont;
-            }         
-            return list;
-        })();
         // значение по умолчанию
-        for (let cat in check_list){
-            check_list[cat].isChecked = true;
+        let cl = Object.assign({}, check_list)
+        for (let cat in cl){
+            cl[cat].isChecked = true;
             break;
         }
+        //
         this.state = {
-            check_list: check_list,
+            check_list: cl,
         } 
-    }
-    _reset_check_list(){
-        let list = {};
-        for (let cat in categories){
-            const elem = categories[cat];
-            let cont = {}
-            for (let icat in elem){
-                const ielem = elem[icat];
-                let icont = {};
-                for (let itm = 0; itm < ielem.length; itm++){
-                    icont[icat === 'brand' ? ielem[itm].name : ielem[itm]] = false;
-                }
-                cont[icat] = icont;
-            }
-            list[cat] = cont;
-        }         
-        return list;
     }
     // передается в CategoryContent --> Brand и FilterItem, вызывается при отметке (при отметке фильтра меняем карту фильтров)
     onCheck_handler(parent, category, name){
@@ -143,6 +110,7 @@ class ProductsPanel extends Component{
         )
     }
 }
+// используется в ProductsPanel
 class CategoryName extends Component{
     onClick_handler(){
         this.props.check_handler(this.props.category);
