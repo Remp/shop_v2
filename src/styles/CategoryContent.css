@@ -1,0 +1,33 @@
+.categories-content{
+    flex: 1;
+    background-color: rgba(33, 40, 54, 0.53);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: auto;
+}
+    .categories-content::-webkit-scrollbar{
+        width: 0.6rem;
+    }
+    .categories-content::-webkit-scrollbar-thumb{
+        background-color: #141820;
+        border-radius: 1.5rem;
+    }
+    .categories-content::-webkit-scrollbar-track-piece{
+        background-color: #343f55;
+        border-radius: 1.5rem;        
+    }
+.brands{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: rgba(48, 63, 92, 0.5);
+}
+.filter{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    
+}

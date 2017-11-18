@@ -1,0 +1,27 @@
+.products-panel{
+    background: rgba(52, 57, 83, 0.8);
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+}
+.categories-bar{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: rgba(65, 80, 109, 0.67)
+}
+    .categories-bar > h2{
+        display: flex;
+        justify-content: center;
+        font-size: 1.5em;
+        border-bottom: 3px solid #4A00AC;
+        margin: 1.2rem 1.2rem 0 1.2rem;
+    }
+    .categories-bar > ul{
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        flex: 1;
+    }

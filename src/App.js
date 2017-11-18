@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import Navigation from './Navigation';
-import $ from 'jquery';
+import Navigation from './containers/Navigation';
 
 
 class App extends Component {
