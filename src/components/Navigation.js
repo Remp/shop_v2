@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductsPanel from '../containers/ProductsPanel';
 import '../styles/Navigation.css';
+import PropTypes from 'prop-types';
 
 class Navigation extends Component{   
     render(){
@@ -18,7 +19,6 @@ class Navigation extends Component{
                         <div className="nav-login-user">Log in</div>
                     </div>
                 </div>
-                <ProductsPanel isExpanded={this.props.isExpanded} />                      
             </div>
         )
     }

@@ -3,6 +3,7 @@
     display: flex;
     align-items: stretch;
     flex: 1;
+    color: white;
 }
 .categories-bar{
     display: flex;

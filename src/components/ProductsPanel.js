@@ -10,7 +10,6 @@ class ProductsPanel extends Component{
         const handler = (cat) => this.props.category_click_handler(cat);
         return(
             <div 
-                style={{display: this.props.isExpanded ? 'flex' : 'none'}} 
                 className="products-panel"
             >
                 <div className="categories-bar">
