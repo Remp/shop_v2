@@ -30,8 +30,7 @@ class ProductsPanel extends Component{
                 check_list[c].isChecked = false;            
         }
         check_list[cat].isChecked = true;   
-        this.setState({check_list: check_list});
-        this.props.history.push(`/nav/${cat}`);  
+        this.setState({check_list: check_list})     
     }
     // передается в CategoriesBtnSet
     btnReset_handler_click(){

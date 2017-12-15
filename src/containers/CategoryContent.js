@@ -7,7 +7,7 @@ import FilterItem from './FilterItem';
 
 class CategoryContent extends Component{
     render(){
-        const current = categories[this.props.match.params.category];
+        const current = categories[this.props.current];
         // создаем логотипы из объекта categories      
         const brands = current['brand'].map((el) => {
             const parent = this.props.current;
@@ -38,7 +38,7 @@ class CategoryContent extends Component{
                     <FilterItem 
                         isChecked={this.props.check_list[parent].data[n][name]} 
                         onChecking={(p, c, n) => this.props.onCheck_handler(p, c, n)} 
-                        parent={parent} category={n} name={el} 
+                        parent={this.props.current} category={n} name={el} 
                     />
                 )
             });
