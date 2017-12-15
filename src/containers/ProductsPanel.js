@@ -54,6 +54,7 @@ class ProductsPanel extends Component{
                 btnReset_click_handler={() => this.btnReset_handler_click()}
                 onCheck_handler={(p, c, n) => this.onCheck_handler(p, c, n)}
                 current={current}
+                findHandler={() => this.props.findHandler()}
             />
         )
     }

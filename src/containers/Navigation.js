@@ -3,17 +3,14 @@ import NavigationComponent from '../components/Navigation';
 import PropTypes from 'prop-types';
 
 class Navigation extends Component{
-    constructor(){
-        super();
-        this.isExpanded = false;
-    } 
+     
     static contextTypes = {
         router: PropTypes.func.isRequired
     }  
     products_click_handler(){
         const {history} = this.context.router;
-        if (this.isExpanded)
-            history.push('/');
+        if (this.context.router.history.location.pathname === '/nav')
+            history.goBack();
         else
             history.push('/nav');
         this.isExpanded = !this.isExpanded;
