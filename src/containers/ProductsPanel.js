@@ -5,15 +5,8 @@ import { categories, check_list } from '../categories.js';
 class ProductsPanel extends Component{
     constructor(){
         super();
-        // значение по умолчанию
-        let cl = Object.assign({}, check_list)
-        for (let cat in cl){
-            cl[cat].isChecked = true;
-            break;
-        }
-        //
         this.state = {
-            check_list: cl,
+            check_list: check_list,
         } 
     }
     // передается в CategoryContent --> Brand и FilterItem, вызывается при отметке (при отметке фильтра меняем карту фильтров)

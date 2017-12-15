@@ -67,6 +67,10 @@ export const check_list = (() => {
             cont.data[icat] = icont;
         }
         list[cat] = cont;
-    }         
+    }  
+    for (let c in list){
+        list[c].isChecked = true;
+        break;
+    }       
     return list;
 })();
