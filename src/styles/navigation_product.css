@@ -1,0 +1,175 @@
+.icons-fa{
+    font-size: 1em;
+    width: 1em;
+    height: 1em;
+}
+.products-panel-external{
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+}
+.products-panel{
+    background: rgba(52, 57, 83, 0.8);
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+}
+.categories-bar{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: rgba(65, 80, 109, 0.67)
+}
+    .categories-bar > h2{
+        display: flex;
+        justify-content: center;
+        font-size: 1.5em;
+        border-bottom: 3px solid #4A00AC;
+        margin: 1.2rem 1.2rem 0 1.2rem;
+    }
+    .categories-bar > ul{
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        flex: 1;
+    }
+        .categories-bar > ul > li{
+            padding: 0.3em 0;
+            padding-left: 1.5rem;
+            cursor: pointer;          
+        }
+        .categories-bar > ul > li:hover{
+            color: #EB1717;
+        }
+        .categories-bar > ul > li.checked{
+            color: #EB1717;
+            background-color: rgba(33, 40, 54, 0.53)
+        }
+        .categories-bar > ul > li i{
+            width: 1.5rem;
+            text-align: center;
+        }
+.categories-content{
+    flex: 1;
+    background-color: rgba(33, 40, 54, 0.53);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: auto;
+}
+    .categories-content::-webkit-scrollbar{
+        width: 0.6rem;
+    }
+    .categories-content::-webkit-scrollbar-thumb{
+        background-color: #141820;
+        border-radius: 1.5rem;
+    }
+    .categories-content::-webkit-scrollbar-track-piece{
+        background-color: #343f55;
+        border-radius: 1.5rem;        
+    }
+.brands{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: rgba(48, 63, 92, 0.5);
+}
+.brand{
+    margin: 1em;
+    border-bottom: 2px solid transparent;  
+    height: 100px;  
+    transition: 0.2s transform ease-in-out;
+    cursor: pointer;
+    padding: 0.3em;
+    border-radius: 0.5rem;
+}
+    .brand:hover{
+        transform: scale(1.05);
+        box-shadow: inset 0 0 2rem #EB1717;
+    }
+    .brand img{
+        height: 100%;
+    }
+    .brand.checked{
+        transform: scale(1.05);
+        box-shadow: inset 0 0 2rem #EB1717;        
+    }
+.filter{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    
+}
+    .filter-bar{
+        margin: 1em 0;
+        box-shadow: inset 0 0 0.7rem rgb(255, 169, 70);
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+        .filter-bar > h3{
+            text-align: center;
+            text-transform: capitalize;
+            background-color: #212836;
+            border-radius: 1.2rem;
+            margin: 0;
+            padding: 0.5rem;
+            box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3)
+        }
+        .filter-bar > ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            padding: 0 0.5rem;
+        }
+            .filter-bar > ul > li{
+                margin: 0.5em 0;
+                border-bottom: 2px solid transparent;
+                text-align: center;
+                cursor: pointer;
+                padding: 0.5em;
+                border: 1px solid transparent;
+                transition: 0.2s ease-in-out;
+                border-radius: 1rem;                     
+            }
+            .filter-bar > ul > li:hover{
+                background-color: #cdddf5;
+                border-radius: 1rem;
+                color: #212836;
+                box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.3);
+                transform: scale(1.05);
+            }
+            .filter-bar > ul > li.checked{
+                background-color: rgba(235, 23, 23, 0.521);
+                border:#EB1717 1px solid;
+                transform: scale(1.05);                
+            }
+            .filter-bar > ul > li.checked:hover{
+                color: white;  
+                box-shadow: 0rem 0rem 0rem rgba(0, 0, 0, 0.3);                
+            }
+.categories-btns-panel{
+    bottom: 0.2rem;
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+    .categories-panel-btn{
+        padding: 0.5rem 1rem;
+        background-color: rgba(38, 42, 94, 0.5);;
+        margin: 0 0.1rem;
+        border-radius: 0.8rem;
+        border: #474c80 2px solid;
+        flex: 1;
+        text-align: center;
+        transition: 0.2s transform ease-in-out;
+        cursor: pointer;
+    }
+    .categories-panel-btn:hover{
+        border-color: #EB1717;
+        color: #EB1717;
+        transform: scale(1.05);
+        box-shadow: inset 0 0 1rem #EB1717;
+    }

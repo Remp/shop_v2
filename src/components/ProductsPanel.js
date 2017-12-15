@@ -3,6 +3,7 @@ import '../styles/ProductsPanel.css';
 import CategoryName from '../containers/CategoryName';
 import CategoriesBtnSet from '../components/CategoriesBtnSet';
 import CategoryContent from '../containers/CategoryContent';
+import {Route} from 'react-router-dom';
 
 class ProductsPanel extends Component{
     render(){
@@ -35,11 +36,18 @@ class ProductsPanel extends Component{
                         btnReset_click_handler={() => this.props.btnReset_click_handler()} 
                     />
                 </div>
-                <CategoryContent 
+                <Route path='/nav/:category' component={props => <CategoryContent 
+                        {...props}
+                        check_list={check_list} 
+                        onCheck_handler={(p, c, n) => this.props.onCheck_handler(p, c, n)} 
+                        current={current}
+                    />}
+                />
+                {/* <CategoryContent 
                     check_list={check_list} 
                     onCheck_handler={(p, c, n) => this.props.onCheck_handler(p, c, n)} 
                     current={current} 
-                />
+                /> */}
             </div>
         )
     }
