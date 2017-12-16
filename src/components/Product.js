@@ -1,12 +1,52 @@
 import React, {Component} from 'react';
+import '../styles/Product.css';
+import $ from 'jquery';
 
 class Product extends Component{
+    componentDidMount(){
+
+        const $product = $(this.product);
+        this.$content = $(this.content);
+        const $title = $(this.title);
+
+        const prH = $product.height();
+        const cntH = this.$content.height();
+        const tH = $title.height();
+
+        this.basicMargin = prH - tH;
+        this.mouseOverMargin = prH - cntH;
+
+        this.$content.css({
+            marginTop: this.basicMargin + 'px'
+        });
+
+    }
+    onMouseEnter_handler(){
+        this.$content.animate({
+            marginTop: this.mouseOverMargin + 'px'
+        }, {
+            queue: false
+        });      
+    }
+    onMouseLeave_handler(){
+        this.$content.animate({
+            marginTop: this.basicMargin + 'px'
+        }, {
+            queue: false
+        }); 
+    }
     render(){
         return (
-            <div style={{backgroundImage: this.props.image}} className="product">
-                <div className="product-content">
-                    <div className="product-title">{this.props.name}</div>
-                    <div className="product-description"></div>
+            <div ref={(el) => this.product = el} 
+                style={{backgroundImage: this.props.image}} 
+                className="product"
+                onMouseEnter={() => this.onMouseEnter_handler()}
+                onMouseLeave={() => this.onMouseLeave_handler()}
+            >
+                <div className="product-price">{this.props.price}</div>
+                <div ref={(el) => this.content = el} className="product-content">
+                    <div ref={el => this.title = el} className="product-title">{this.props.name}</div>
+                    <div className="product-description">{this.props.description}</div>
                 </div>
             </div>
         )

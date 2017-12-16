@@ -8,6 +8,7 @@ class Product extends Component{
                 image={this.props.image} 
                 name={this.props.name} 
                 description={this.props.description}
+                price={this.props.price}
             />
         )
     }

@@ -3,7 +3,17 @@
     width: 15rem;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
+    .product-price{
+        position: absolute;
+        background-color: #0000009a;
+        color: white;
+        font-size: 1.2rem;
+        margin: 0.4rem;
+        padding: 0.1rem;
+        border-radius: 0.5rem;
+    }
     .product-content{
         height: 65%;
         display: flex;
@@ -14,9 +24,15 @@
             color: white;
             background-color: #0000009a;
             padding: 0.1rem;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            text-overflow: ellipsis;            
         }
         .product-description{
             flex: 1;
             padding: 0.5rem;
             overflow: auto;
+            background-color: white;
+            color: #acacac
         }
