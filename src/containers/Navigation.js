@@ -14,7 +14,6 @@ class Navigation extends Component{
         else
             history.push('/nav');
         this.isExpanded = !this.isExpanded;
-        // this.setState({isExpanded: !this.state.isExpanded});
     }
     render(){
         return (

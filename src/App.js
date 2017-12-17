@@ -18,16 +18,18 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation />
-        <Switch>
-          <Route path='/nav' component={() => <ProductsPanel 
-              findHandler={() => this.bntFind_handler()}
-            /> } 
-          />
-          <Route 
-            path='/search' 
-            component={() => <ProductList/>} 
-          />
-        </Switch>
+        <div className="content">
+          <Switch>
+            <Route path='/nav' component={() => <ProductsPanel 
+                findHandler={() => this.bntFind_handler()}
+              /> } 
+            />
+            <Route 
+              path='/search' 
+              component={() => <ProductList/>} 
+            />
+          </Switch>
+        </div>      
       </div>
     );
   }

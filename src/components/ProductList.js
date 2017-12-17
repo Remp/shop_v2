@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import Masonry from 'react-masonry-component';
+import '../styles/ProductsList.css'
 
 class ProductList extends Component{
     render(){
         return (
-            <div className="product-list">
-                {this.props.products}
+            <div className="products-list">
+                    {this.props.products}
             </div>
         )
     }

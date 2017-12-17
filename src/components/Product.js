@@ -8,13 +8,15 @@ class Product extends Component{
         const $product = $(this.product);
         this.$content = $(this.content);
         const $title = $(this.title);
+        const $price = $(this.price);
 
         const prH = $product.height();
         const cntH = this.$content.height();
         const tH = $title.height();
+        const priceH = $price.height();
 
-        this.basicMargin = prH - tH;
-        this.mouseOverMargin = prH - cntH;
+        this.basicMargin = prH - tH - priceH;
+        this.mouseOverMargin = prH - cntH - priceH;
 
         this.$content.css({
             marginTop: this.basicMargin + 'px'
@@ -43,7 +45,7 @@ class Product extends Component{
                 onMouseEnter={() => this.onMouseEnter_handler()}
                 onMouseLeave={() => this.onMouseLeave_handler()}
             >
-                <div className="product-price">{this.props.price}</div>
+                <div ref={el => this.price = el} className="product-price">{this.props.price}</div>
                 <div ref={(el) => this.content = el} className="product-content">
                     <div ref={el => this.title = el} className="product-title">{this.props.name}</div>
                     <div className="product-description">{this.props.description}</div>

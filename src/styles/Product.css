@@ -4,15 +4,16 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    margin: 1rem;
 }
     .product-price{
-        position: absolute;
+        width: auto;
         background-color: #0000009a;
         color: white;
         font-size: 1.2rem;
-        margin: 0.4rem;
         padding: 0.1rem;
         border-radius: 0.5rem;
+        text-align: center;
     }
     .product-content{
         height: 65%;
