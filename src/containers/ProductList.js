@@ -1,30 +1,12 @@
 import React, {Component} from 'react';
 import ProductListComponent from '../components/ProductList';
 import Product from './Product';
-import ProductsStore from '../store/ProductsStore';
+import {connect} from 'react-redux';
 
 class ProductList extends Component{
-    constructor(){
-        super();
-        this.state = {
-            products: ProductsStore.getCurrentProducts()
-        }
-    }
-    onChange = (() => {
-        this.setState({
-            products: ProductsStore.getCurrentProducts()
-        })
-    }).bind(this);
-
-    componentDidMount(){
-        ProductsStore.addChangeListener(this.onChange)
-    }
-    componentWillUnmount(){
-        ProductsStore.removeChangeListener(this.onChange)
-    }
     render(){
         //парсим
-        const prod = this.state.products.map(el => {
+        const prod = this.props.products.map(el => {
             let description = '';
             for (let c in el.parameters)
                 description += `${c} ${el.parameters[c]}; `
@@ -42,4 +24,9 @@ class ProductList extends Component{
         )
     }
 }
-export default ProductList;
+function stateToProps(state){
+    return {
+        products: state
+    }
+}
+export default connect(stateToProps)(ProductList);
