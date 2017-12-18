@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ProductsPanelComponent from '../components/ProductsPanel';
 import { categories, check_list } from '../categories.js';
+import ProductsAction from '../action/ProductsAction';
+import PropTypes from 'prop-types';
 
 class ProductsPanel extends Component{
     constructor(){
@@ -41,6 +43,10 @@ class ProductsPanel extends Component{
         }
         this.setState({check_list: check_list});
     }
+    btnFind_handler_click(){
+        ProductsAction.getProducts(this.state.check_list);
+        this.props.history.push('/search');
+    }
     render(){
         const current = (() => {
             for (let c in this.state.check_list)
@@ -54,7 +60,7 @@ class ProductsPanel extends Component{
                 btnReset_click_handler={() => this.btnReset_handler_click()}
                 onCheck_handler={(p, c, n) => this.onCheck_handler(p, c, n)}
                 current={current}
-                findHandler={() => this.props.findHandler()}
+                findHandler={() => this.btnFind_handler_click()}
             />
         )
     }

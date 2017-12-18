@@ -20,8 +20,9 @@ class App extends Component {
         <Navigation />
         <div className="content">
           <Switch>
-            <Route path='/nav' component={() => <ProductsPanel 
+            <Route path='/nav' component={({history}) => <ProductsPanel 
                 findHandler={() => this.bntFind_handler()}
+                history={history}
               /> } 
             />
             <Route 
