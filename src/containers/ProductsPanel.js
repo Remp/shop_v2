@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ProductsPanelComponent from '../components/ProductsPanel';
 import { categories, check_list } from '../categories.js';
 import PropTypes from 'prop-types';
+import interactions from '../interactions';
 
 class ProductsPanel extends Component{
     constructor(){
@@ -43,7 +44,7 @@ class ProductsPanel extends Component{
         this.setState({check_list: check_list});
     }
     btnFind_handler_click(){
-
+        interactions.requestProducts(this.state.check_list);
         this.props.history.push('/search');
     }
     render(){
