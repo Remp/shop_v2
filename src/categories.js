@@ -10,7 +10,7 @@ import huawei_logo from './images/logo-huawei.gif';
 import beats_logo from './images/logo-beats.svg';
 
 export const categories = {
-    laptop: {
+    laptops: {
         brand: [
             {name: 'hp', img: hp_logo},
             {name: 'apple', img: apple_logo},
@@ -23,9 +23,9 @@ export const categories = {
         gpu: ['nVidia GeForce', 'AMD Radeon'],
         os: ['windows', 'linux', 'without os'],
         case: ['metal', 'plastic', 'combined'],
-        ram: ['2gb - 8gb', '9gb - 16gb', '32gb+']
+        ram: ['2gb - 8gb', '9gb - 16gb', 'gt 32gb']
     },
-    smartphone: {
+    smartphones: {
         brand: [
             {name: 'samsung', img: samsung_logo},
             {name: 'apple', img: apple_logo},
@@ -34,10 +34,10 @@ export const categories = {
             {name: 'Xiaomi', img: xiaomi_logo}
         ],
         diagonal: ['4.1 - 4.5', '4.6 - 5', '5.1 - 5.5', '5.6 - 6', '6+'],
-        'battery capacity': ['lt 2999mAh', '3000 - 3999mAh', '4000+ mAh'],
+        'battery capacity': ['lt 2999mAh', '3000 - 3999mAh', 'gt 4000mAh'],
         ram: ['lt 2gb', '2gb', '3gb', '4gb', '6gb'],
-        'main camera': ['lt 12mpx', '13mpx+'],
-        'frontal camera': ['lt 5mpx', '5mpx+'],
+        'main camera': ['lt 12mpx', 'gt 13mpx'],
+        'frontal camera': ['lt 5mpx', 'gt 5mpx'],
     },
     headphones: {
         brand: [

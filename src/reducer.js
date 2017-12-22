@@ -14,7 +14,9 @@ export default (state = def, action) => {
     switch(action.type){
         case Constants.PRODUCTS_GET_ACCESS: 
             return action.products
-        case Constants.LOADING: 
+        default: {
+            return []
+        }
             
     }
 }

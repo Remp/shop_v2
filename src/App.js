@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ProductsPanel from './containers/ProductsPanel';
 import PropTypes from 'prop-types';
 import ProductList from './containers/ProductList';
+import {store} from './store';
 
 class App extends Component {
   
@@ -12,6 +13,7 @@ class App extends Component {
     router: PropTypes.func.isRequired
   }
   bntFind_handler(){
+    store.dispatch();
     this.context.router.history.push('/search');
   }
   render() {

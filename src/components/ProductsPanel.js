@@ -18,12 +18,12 @@ class ProductsPanel extends Component{
                         <CategoryName 
                             check_handler={handler} 
                             check_list={check_list} name='Laptops' faclass='fa fa-laptop' 
-                            category='laptop'
+                            category='laptops'
                         />
                         <CategoryName 
                             check_handler={handler} 
                             check_list={check_list} name='Smartphones' faclass='fa fa-mobile' 
-                            category='smartphone'
+                            category='smartphones'
                         />
                         <CategoryName 
                             check_handler={handler} 
