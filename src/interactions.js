@@ -16,10 +16,10 @@ export default {
         let where = [];
         for (let c in check_list[table].data){
             const obj = check_list[table].data[c];
-            cols.push(c);
+            cols.push(`[${c}]`);
             for (let i in obj){
                 if (obj[i]){
-                        where.push(`${c} ${parse(i)}`)
+                        where.push(`[${c}] ${parse(i)}`)
                 }
             }
         }
@@ -41,7 +41,7 @@ function parse(str){
         return `like '%${str}%' `;
     }
     if (str.match(/lt/))
-        return `< ${str.match(/\d+/)}`
+        return `< ${str.match(/\d+/)} `
     if (str.match(/gt/))
         return `> ${str.match(/\d+/)}`   
     if (str.split(' ').length > 1)
