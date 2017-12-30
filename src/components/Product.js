@@ -44,6 +44,7 @@ class Product extends Component{
                 className="product"
                 onMouseEnter={() => this.onMouseEnter_handler()}
                 onMouseLeave={() => this.onMouseLeave_handler()}
+                onClick={() => this.props.onClick()}
             >
                 <div ref={el => this.price = el} className="product-price">{this.props.price}</div>
                 <div ref={(el) => this.content = el} className="product-content">

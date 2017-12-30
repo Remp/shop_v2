@@ -1,0 +1,30 @@
+.product-description{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    color: #3f3f3f
+}
+    .product-description .upper{
+        display: flex;
+    }
+    .product-description .upper > .desc-item{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+    }
+    .product-description .upper > .desc-item:hover{
+        color: #EB1717;
+    }
+    .product-description .upper > .desc-item.checked{
+        color: #EB1717;
+        border-bottom: 1px solid #EB1717;
+    }
+    .product-description .content{
+        flex: 1;
+        overflow: auto;
+        padding: 1rem;
+    }

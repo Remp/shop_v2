@@ -9,6 +9,7 @@ class Product extends Component{
                 name={this.props.name} 
                 description={this.props.description}
                 price={this.props.price}
+                onClick={() => this.props.onClick()}
             />
         )
     }

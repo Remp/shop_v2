@@ -18,7 +18,7 @@ class Navigation extends Component{
     render(){
         return (
             <NavigationComponent 
-                products_click_handler={() => this.products_click_handler()}
+                products_click_handler={() => this.props.toggle_handler()}
             />   
         )
     }

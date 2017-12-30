@@ -33,7 +33,7 @@ class ProductsPanel extends Component{
                     </ul>
                     <CategoriesBtnSet 
                         btnReset_click_handler={() => this.props.btnReset_click_handler()}
-                        findHandler={() => this.props.findHandler()} 
+                        findHandler={() => this.props.find_handler()} 
                     />
                 </div>
                 <CategoryContent 

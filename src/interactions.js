@@ -29,7 +29,9 @@ export default {
 
         store.dispatch({
             type: Constants.RODUCTS_REQUEST,
-            request: request
+            data: {
+                request: request
+            }
         })
     }
 }

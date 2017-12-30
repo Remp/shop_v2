@@ -11,6 +11,9 @@ class ProductsPanel extends Component{
             check_list: check_list,
         } 
     }
+    static contextTypes = {
+        router: PropTypes.func.isRequired
+    }
     // передается в CategoryContent --> Brand и FilterItem, вызывается при отметке (при отметке фильтра меняем карту фильтров)
     onCheck_handler(parent, category, name){
         let check_list = Object.assign({}, this.state.check_list);
@@ -44,8 +47,9 @@ class ProductsPanel extends Component{
         this.setState({check_list: check_list});
     }
     btnFind_handler_click(){
+        this.props.navToggle();
         interactions.requestProducts(this.state.check_list);
-        this.props.history.push('/search');
+        this.context.router.history.push('/products/hp_probook_4540s');
     }
     render(){
         const current = (() => {
@@ -60,7 +64,7 @@ class ProductsPanel extends Component{
                 btnReset_click_handler={() => this.btnReset_handler_click()}
                 onCheck_handler={(p, c, n) => this.onCheck_handler(p, c, n)}
                 current={current}
-                findHandler={() => this.btnFind_handler_click()}
+                find_handler={() => this.btnFind_handler_click()}
             />
         )
     }

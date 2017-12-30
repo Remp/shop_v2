@@ -1,0 +1,19 @@
+.slider{
+    display: flex;
+    justify-content: space-between;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    flex:1;
+}
+    .slider div{
+        font-size: 1.5rem;
+        padding: 0 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .slider div:hover{
+        color: #EB1717;
+    }
