@@ -7,11 +7,11 @@
     .product-page .close{
         display: flex;
         justify-content: flex-end;
-        border-bottom: 1px solid gray;
+        background-color: #404e69c5;
     }
     .product-page .close .close-btn{
         padding: 0.5rem;
-        color: gray;
+        color: rgb(75, 74, 74);
         cursor: pointer;
         font-size: 1.5rem;
     }
@@ -22,10 +22,8 @@
     .product-page .product-content{
         flex: 1;
         display: flex;
-    }
-    .product-page .product-content{
-        display: flex;
         flex-direction: row;
+        background-color: #d5d8e6;
     }
     @media screen and (max-width:760px){
         .product-page .product-content{

@@ -2,26 +2,27 @@ import React, {Component} from 'react';
 import ProductListComponent from '../components/ProductList';
 import Product from './Product';
 import {connect} from 'react-redux';
+import images from '../images';
 
-class ProductList extends Component{
-    onClick_handler(path){
-        this.props.history.push(`/${path}`)
-    }
+export class ProductList extends Component{
     render(){
         //парсим
-        const prod = this.props.products.map(el => {
+        let prod = this.props.products.map(el => {
             let description = '';
             for (let c in el.parameters)
                 description += `${c}: ${el.parameters[c]}; `;
             const name = `${el.brand} ${el.model}`;
-            const path = `${el.brand}_${el.model}`
+            const path = `${el.brand}_${el.model.replace(' ', '_')}`;
+            //получить первое изображение
+            const image = images[name][0];
             return <Product
                 name={name}
                 price={el.price}
                 description={description}
-                onClick={() => this.onClick_handler(path)}
+                path={path}
+                image={image}
              />
-        })
+        })      
         //
         return (
             <ProductListComponent 
@@ -35,4 +36,4 @@ function stateToProps(state){
         products: state.products
     }
 }
-export default connect(stateToProps)(ProductList);
+export const ProductListFlux = connect(stateToProps)(ProductList);

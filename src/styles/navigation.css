@@ -49,21 +49,27 @@
         margin: 0;
         display: flex;
         align-items: stretch;
+        background-color: #080a0e23
     }
-        .nav-menu > ul > li{
+        .nav-menu > ul > li.nav-item{
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 0.3em;
+            padding: 0 1rem;
             border-top: 2px solid transparent;
             cursor: pointer;
         }
-        .nav-menu > ul > li:hover{
-            color: #EB1717;
+        .nav-menu > ul > li.divider{
+            border-left: 1px solid #12151d
         }
-        .nav-menu > ul > li.checked{
+        .nav-menu > ul > li.nav-item:hover{
+            color: #EB1717;
+            background-color: #191e29
+        }
+        .nav-menu > ul > li.nav-item.checked{
             color: #EB1717;
             border-top: 2px solid #EB1717;
+            background-color: #191e29
         }
 .nav-login{
     display: flex;

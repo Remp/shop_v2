@@ -3,24 +3,38 @@ import './styles/App.css';
 import Navigation from './containers/Navigation';
 import {Route, Switch} from 'react-router-dom';
 import ProductsPanel from './containers/ProductsPanel';
-import ProductList from './containers/ProductList';
 import ProductPage from './containers/ProductPage';
 import $ from 'jquery';
+import {ProductListFlux} from './containers/ProductList';
+import PropTypes from 'prop-types';
 
 class App extends Component { 
+    static contextTypes = {
+        router: PropTypes.func.isRequired
+    }
     navToggle(){
-        $('.content').toggleClass('hided');
+        this.$nav.toggleClass('hided');
+        this.$other.toggleClass('hided');
+    }
+    viewed_click_handler(){
+        const {history} = this.context.router;
+        history.push('/viewed');
+        this.$nav.addClass('hided');
+        this.$other.removeClass('hided');
     }
     render() {
         return (
         <div className="App">
-            <Navigation toggle_handler={() => this.navToggle()}/>
-            <div className="content">
+            <Navigation 
+                toggle_handler={() => this.navToggle()}
+                viewed_click_handler={() => this.viewed_click_handler()}
+            />
+            <div ref={el => this.$other = $(el)} className="content">
                 <Switch>
                     <Route 
                         exact
                         path='/products' 
-                        component={ProductList} 
+                        component={ProductListFlux} 
                     />
                     <Route 
                         path='/products/:name'
@@ -28,7 +42,7 @@ class App extends Component {
                     />
                 </Switch>
             </div>
-            <div className="content hided">
+            <div ref={el => this.$nav = $(el)} className="content hided">
                 <ProductsPanel 
                     navToggle={() => this.navToggle()}
                 />

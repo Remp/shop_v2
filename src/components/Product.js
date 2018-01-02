@@ -38,9 +38,10 @@ class Product extends Component{
         }); 
     }
     render(){
+        const image = `url(${this.props.image})`;
         return (
             <div ref={(el) => this.product = el} 
-                style={{backgroundImage: this.props.image}} 
+                style={{backgroundImage: image}} 
                 className="product"
                 onMouseEnter={() => this.onMouseEnter_handler()}
                 onMouseLeave={() => this.onMouseLeave_handler()}
