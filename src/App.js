@@ -6,6 +6,7 @@ import ProductsFilter from './containers/ProductsFilter';
 import ProductPage from './containers/ProductPage';
 import $ from 'jquery';
 import {ProductListFlux} from './containers/ProductList';
+import {ProductList} from './containers/ProductList';
 import PropTypes from 'prop-types';
 
 class App extends Component { 
@@ -22,6 +23,28 @@ class App extends Component {
         this.$nav.addClass('hided');
         this.$other.removeClass('hided');
     }
+    getViewedFromLocalStorage(){
+        const viewed = localStorage.getItem('viewed');
+        if (viewed)
+            return JSON.parse(viewed);
+    }
+    saveViewedToLocalStorage(product){
+        const viewed = localStorage.getItem('viewed') ? JSON.parse(localStorage.getItem('viewed')) : [];
+        const brand = product.brand;
+        const model = product.model;
+
+        //проверка если элемент уже в списке, тогда просто в начало его
+        for (let i = 0; i < viewed.length; i++){
+            const el = viewed[i];
+            if (el.brand === brand && el.model === model){
+                viewed.splice(i, 1);
+                viewed.unshift(el);
+                return;
+            }
+        }
+        viewed.push(product);
+        localStorage.setItem('viewed', JSON.stringify(viewed));
+    }
     render() {
         return (
         <div className="App">
@@ -34,7 +57,15 @@ class App extends Component {
                     <Route 
                         exact
                         path='/products' 
-                        component={ProductListFlux} 
+                        component={() => <ProductListFlux saveToLocalStorage={p => this.saveViewedToLocalStorage(p)}/>} 
+                    />
+                    <Route 
+                        exact
+                        path='/viewed' 
+                        component={() => <ProductList 
+                                            products={this.getViewedFromLocalStorage()}
+                                            saveToLocalStorage={p => this.saveViewedToLocalStorage(p)}
+                                        />} 
                     />
                     <Route 
                         path='/products/:name'

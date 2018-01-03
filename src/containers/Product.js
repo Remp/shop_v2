@@ -7,6 +7,7 @@ class Product extends Component{
         router: PropTypes.func.isRequired
     }
     onClick_handler(){
+        this.props.saveToLocalStorage();
         this.context.router.history.push(`/products/${this.props.path}`)
     }
     render(){

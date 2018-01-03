@@ -21,6 +21,7 @@ export class ProductList extends Component{
                 description={description}
                 path={path}
                 image={image}
+                saveToLocalStorage={() => this.props.saveToLocalStorage(el)}
              />
         })      
         //

@@ -49,7 +49,7 @@ class ProductsFilter extends Component{
     btnFind_handler_click(){
         this.props.navToggle();
         interactions.requestProducts(this.state.check_list);
-        this.context.router.history.push('/products/hp_probook_4540s');
+        this.context.router.history.push('/products');
     }
     render(){
         const current = (() => {
