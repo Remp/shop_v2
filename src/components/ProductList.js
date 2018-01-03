@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Masonry from 'react-masonry-component';
 import '../styles/ProductsList.css'
 
 class ProductList extends Component{

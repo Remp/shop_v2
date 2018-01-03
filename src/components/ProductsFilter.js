@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import '../styles/ProductsPanel.css';
+import '../styles/ProductsFilter.css';
 import CategoryName from '../containers/CategoryName';
 import CategoriesBtnSet from '../components/CategoriesBtnSet';
 import CategoryContent from '../containers/CategoryContent';
 
-class ProductsPanel extends Component{
+class FilterPanel extends Component{
     render(){
         const { check_list, current } = this.props;        
         const handler = (cat) => this.props.category_click_handler(cat);
@@ -45,4 +45,4 @@ class ProductsPanel extends Component{
         )
     }
 }
-export default ProductsPanel;
+export default FilterPanel;

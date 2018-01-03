@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import Navigation from './containers/Navigation';
 import {Route, Switch} from 'react-router-dom';
-import ProductsPanel from './containers/ProductsPanel';
+import ProductsFilter from './containers/ProductsFilter';
 import ProductPage from './containers/ProductPage';
 import $ from 'jquery';
 import {ProductListFlux} from './containers/ProductList';
@@ -43,7 +43,7 @@ class App extends Component {
                 </Switch>
             </div>
             <div ref={el => this.$nav = $(el)} className="content hided">
-                <ProductsPanel 
+                <ProductsFilter 
                     navToggle={() => this.navToggle()}
                 />
             </div>      

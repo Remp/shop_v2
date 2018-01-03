@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ProductsPanelComponent from '../components/ProductsPanel';
+import ProductsFilterComponent from '../components/ProductsFilter';
 import { categories, check_list } from '../categories.js';
 import PropTypes from 'prop-types';
 import interactions from '../interactions';
 
-class ProductsPanel extends Component{
+class ProductsFilter extends Component{
     constructor(){
         super();
         this.state = {
@@ -58,7 +58,7 @@ class ProductsPanel extends Component{
                     return c;
         })();
         return(
-            <ProductsPanelComponent 
+            <ProductsFilterComponent 
                 check_list={this.state.check_list}
                 category_click_handler={(cat) => this.category_click_handler(cat)}
                 btnReset_click_handler={() => this.btnReset_handler_click()}
@@ -69,4 +69,4 @@ class ProductsPanel extends Component{
         )
     }
 }
-export default ProductsPanel;
+export default ProductsFilter;

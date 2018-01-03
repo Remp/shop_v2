@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductsPanel from '../containers/ProductsPanel';
+import ProductsPanel from '../containers/ProductsFilter';
 import '../styles/Navigation.css';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
@@ -36,7 +36,7 @@ class Navigation extends Component{
                                     borderTop: 'transparent'
                                 }}
                             >
-                                Products
+                                Filter
                             </li>
                             <li className='divider'></li>
                             <li 

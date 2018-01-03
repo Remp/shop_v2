@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../styles/Product.css';
 import $ from 'jquery';
 
-class Product extends Component{
+class ProductCard extends Component{
     componentDidMount(){
 
         const $product = $(this.product);
@@ -56,4 +56,4 @@ class Product extends Component{
         )
     }
 }
-export default Product;
+export default ProductCard;
