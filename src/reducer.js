@@ -1,6 +1,7 @@
 import Constants from './Constants';
+import {Map, List, fromJS} from 'immutable';
 
-const def = {
+const def = fromJS({
     products: [{
         id: 1,
         brand: 'hp',
@@ -21,11 +22,15 @@ const def = {
             commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil 
             molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla`
     }]
-}
+})
 export default (state = def, action) => {
     switch(action.type){
         case Constants.PRODUCTS_GET_ACCESS: 
-            return action.state
+            return state.merge(action.state);
+            break;
+        case Constants.FAILED_DB_CONNECTION:
+            return state.merge(action.state);
+            break;
         default: 
             return state;          
     }

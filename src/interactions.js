@@ -30,7 +30,8 @@ export default {
         store.dispatch({
             type: Constants.RODUCTS_REQUEST,
             data: {
-                request: request
+                collection: col,
+                filter: filter
             }
         })
     }

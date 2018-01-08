@@ -29,7 +29,8 @@ class App extends Component {
             return JSON.parse(viewed);
     }
     saveViewedToLocalStorage(product){
-        const viewed = localStorage.getItem('viewed') ? JSON.parse(localStorage.getItem('viewed')) : [];
+        const v = localStorage.getItem('viewed');
+        const viewed = v ? JSON.parse(v) : [];
         const brand = product.brand;
         const model = product.model;
 
