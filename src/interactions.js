@@ -4,35 +4,13 @@ import Constants from './Constants';
 export default {
     requestProducts(check_list){
         console.log(check_list);
-        const table = (() => {
-            for (let c in check_list)
-                if (check_list[c].isChecked)
-                    return c;
-        })();
-        console.log(table);
-
-        // распарсить check_list в sql запрос
-        let cols = [];
-        let where = [];
-        for (let c in check_list[table].data){
-            const obj = check_list[table].data[c];
-            cols.push(`[${c}]`);
-            for (let i in obj){
-                if (obj[i]){
-                        where.push(`[${c}] ${parse(i)}`)
-                }
-            }
-        }
-        const request = `select ${cols.join(", ")} from ${table} ${where.length ? `where ${where.join('and ')}`: ''}`;
-        console.log(request);
-        //
 
         store.dispatch({
+            type: Constants.LOADING,
+        })
+        store.dispatch({
             type: Constants.RODUCTS_REQUEST,
-            data: {
-                collection: col,
-                filter: filter
-            }
+            data: parseMongo(check_list)
         })
     }
 }
@@ -40,15 +18,37 @@ export default {
 function parse(str){
     if (str.split(' ').length == 1){
         if (str.match(/\d+[\.]?[\d+]?/))
-            return `= ${str} `
-        return `like '%${str}%' `;
+            return str
+        return {$regex: str};
     }
     if (str.match(/lt/))
-        return `< ${str.match(/\d+/)} `
+        return {$lt: `${str.match(/\d+/)}`}
     if (str.match(/gt/))
-        return `> ${str.match(/\d+/)}`   
-    if (str.split(' ').length > 1)
-        return `like '%${str}%' `;
+        return {$gt: `${str.match(/\d+/)}`}   
     const vals = str.match(/\d+[\.]?[\d+]?/gi);
-    return `between ${vals[0]} and ${vals[1]} `;
+    if (!vals)
+        return {$regex: str};
+    return {
+        $gt: vals[0],
+        $lt: vals[1]
+    }
+}
+function parseMongo(check_list){
+    let collection = '';
+    const filter = {};
+    for (let i in check_list)
+        if (check_list[i].isChecked){
+            collection = i;
+            for (let j in check_list[i].data){
+                const obj = check_list[i].data[j];
+                for (let l in obj)
+                    if (obj[l])
+                        filter[j] = parse(l)
+            }
+            break;
+        }
+    return {
+        collection: collection,
+        filter: filter
+    }
 }

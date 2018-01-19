@@ -27,10 +27,10 @@ export default (state = def, action) => {
     switch(action.type){
         case Constants.PRODUCTS_GET_ACCESS: 
             return state.merge(action.state);
-            break;
         case Constants.FAILED_DB_CONNECTION:
             return state.merge(action.state);
-            break;
+        case Constants.LOADING: 
+            return state.update('loading', l => !l);
         default: 
             return state;          
     }

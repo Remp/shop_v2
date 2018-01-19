@@ -7,7 +7,7 @@ import {fromJS} from 'immutable';
 function middleware({getState, dispatch}){
     return next => action => {
         if (action.type == Constants.RODUCTS_REQUEST)
-            socket.emit('request_products', action.data)
+            socket.emit('products_request', action.data)
     }
 }
 const socket = new io('http://localhost:7777');
@@ -16,7 +16,10 @@ socket.on('get_products', state => {
     store.dispatch({
         type: Constants.PRODUCTS_GET_ACCESS,
         state: state
-    })
+    });
+    store.dispatch({
+        type: Constants.LOADING,
+    });
 });
 socket.on('db_connection_failed', () => {
     store.dispatch({
@@ -24,7 +27,10 @@ socket.on('db_connection_failed', () => {
         state: fromJS({
             error: 'Failed to connect to database',
             products: []
-        })
-    })
+        })      
+    });
+    store.dispatch({
+        type: Constants.LOADING,
+    });
 })
 export const store = createStore(reducer, applyMiddleware(middleware));

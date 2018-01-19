@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import images from '../images';
 
 export class ProductList extends Component{
+    componentDidMount(){
+        this.props.onMount();
+    }
     render(){
         //парсим
         let prod = this.props.products.map(el => {
@@ -27,14 +30,17 @@ export class ProductList extends Component{
         //
         return (
             <ProductListComponent 
-                products={prod}                 
+                products={prod}  
+                loading={this.props.loading}               
             />     
         )
     }
 }
 function stateToProps(state){
+    const parsed = state.toJS();
     return {
-        products: state.products
+        products: parsed.products,
+        loading: parsed.loading
     }
 }
 export const ProductListFlux = connect(stateToProps)(ProductList);

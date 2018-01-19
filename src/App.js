@@ -8,12 +8,15 @@ import $ from 'jquery';
 import {ProductListFlux} from './containers/ProductList';
 import {ProductList} from './containers/ProductList';
 import PropTypes from 'prop-types';
+import './styles/Navigation.css';
 
 class App extends Component { 
     static contextTypes = {
         router: PropTypes.func.isRequired
     }
-    navToggle(){
+    //просто показывает/прячем фильтр
+    navToggler(e){
+        $(e.target).toggleClass('checked');
         this.$nav.toggleClass('hided');
         this.$other.toggleClass('hided');
     }
@@ -25,8 +28,7 @@ class App extends Component {
     }
     getViewedFromLocalStorage(){
         const viewed = localStorage.getItem('viewed');
-        if (viewed)
-            return JSON.parse(viewed);
+        return viewed ? JSON.parse(viewed) : [];
     }
     saveViewedToLocalStorage(product){
         const v = localStorage.getItem('viewed');
@@ -46,31 +48,73 @@ class App extends Component {
         viewed.push(product);
         localStorage.setItem('viewed', JSON.stringify(viewed));
     }
+    onTab_enter(way){
+        $('.nav-item').not('.c').css({color: 'white'})
+        $(`#${way}`).css({color: '#EB1717'})
+    }   
+    pushTo(way){
+        const {history} = this.context.router;
+        history.push(way);
+    }
+    
     render() {
         return (
         <div className="App">
-            <Navigation 
-                toggle_handler={() => this.navToggle()}
-                viewed_click_handler={() => this.viewed_click_handler()}
-            />
+            <div className='navigation'>
+                <div className="navbar">
+                    <div className="nav-logo"><a href="#">The beast market</a></div>
+                    <div className="nav-menu">
+                        <ul ref={el => this.menuBar = el}>
+                            <li 
+                                className='nav-item c'
+                                onClick={(e) => this.navToggler(e)}
+                                style={{
+                                    borderTop: 'transparent'
+                                }}                               
+                            >
+                                Filter
+                            </li>
+                            <li className='divider'></li>
+                            <li 
+                                className='nav-item' 
+                                onClick={(e) => this.pushTo('/viewed')}
+                                id='viewed'
+                            >
+                                Viewed
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="nav-login">
+                        <div className="nav-login-avatar"></div>
+                        <div className="nav-login-user">Log in</div>
+                    </div>
+                </div>
+            </div>
             <div ref={el => this.$other = $(el)} className="content">
                 <Switch>
                     <Route 
                         exact
                         path='/products' 
-                        component={() => <ProductListFlux saveToLocalStorage={p => this.saveViewedToLocalStorage(p)}/>} 
+                        component={() => <ProductListFlux 
+                                saveToLocalStorage={p => this.saveViewedToLocalStorage(p)}
+                                onMount={() => this.onTab_enter('products')}
+                            />
+                        }
+                        id='products'
                     />
                     <Route 
                         exact
                         path='/viewed' 
-                        component={() => <ProductList 
-                                            products={this.getViewedFromLocalStorage()}
-                                            saveToLocalStorage={p => this.saveViewedToLocalStorage(p)}
-                                        />} 
+                        component={() => 
+                             <ProductList 
+                                products={this.getViewedFromLocalStorage()}
+                                saveToLocalStorage={p => this.saveViewedToLocalStorage(p)}
+                                onMount={() => this.onTab_enter('viewed')}
+                            />}
                     />
                     <Route 
                         path='/products/:name'
-                        component={ProductPage}
+                        component={() => <ProductPage onMount={() => this.onTab_enter('products')}/>}
                     />
                 </Switch>
             </div>

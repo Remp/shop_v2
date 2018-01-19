@@ -8,6 +8,9 @@ class ProductPage extends Component{
     static contextTypes = {
         router: PropTypes.func.isRequired
     }
+    componentDidMount(){
+        this.props.onMount();
+    }
     componentWillMount(){
         const products = this.props.products;
         const match = this.context.router.route.match.params.name;
@@ -72,8 +75,9 @@ class ProductPage extends Component{
 }
 
 function stateToProps(state){
+    const parsed = state.toJS();
     return {
-        products: state.products
+        products: parsed.products
     }
 }
 export default connect(stateToProps)(ProductPage);

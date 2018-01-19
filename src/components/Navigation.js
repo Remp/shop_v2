@@ -5,23 +5,6 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 class Navigation extends Component{
-    constructor(){
-        super();
-        this.state = {
-            current: ''
-        }
-    }
-    componentDidMount(){
-        this.setState({current: this.props.whatChecked})
-    }
-    products_click_handler(e){
-        $(e.target).toggleClass('checked');
-        this.props.products_click_handler();
-    } 
-    viewed_click_handler(e){
-        this.setState({current: '/viewed'})
-        this.props.viewed_click_handler();
-    }  
     render(){
         return (
             <div className='navigation'>
@@ -30,8 +13,8 @@ class Navigation extends Component{
                     <div className="nav-menu">
                         <ul ref={el => this.menuBar = el}>
                             <li 
-                                className={this.state.current === '/products' ? 'nav-item checked': 'nav-item' }
-                                onClick={(e) => this.products_click_handler(e)}
+                                className={this.props.whatChecked === 'filter' ? 'nav-item checked': 'nav-item' }
+                                onClick={(e) => this.props.navToggler(e)}
                                 style={{
                                     borderTop: 'transparent'
                                 }}
@@ -40,8 +23,8 @@ class Navigation extends Component{
                             </li>
                             <li className='divider'></li>
                             <li 
-                                className={this.state.current === '/viewed' ? 'nav-item checked': 'nav-item' } 
-                                onClick={(e) => this.viewed_click_handler(e)}
+                                className={this.props.whatChecked === 'viewed' ? 'nav-item checked': 'nav-item' } 
+                                onClick={(e) => this.props.pushTo('/viewed')}
                             >
                                 Viewed
                             </li>
