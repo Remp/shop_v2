@@ -2,6 +2,7 @@ import Constants from './Constants';
 import {Map, List, fromJS} from 'immutable';
 
 const def = fromJS({
+    user: '',
     products: [{
         id: 1,
         brand: 'hp',

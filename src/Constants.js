@@ -2,5 +2,6 @@ export default {
     PRODUCTS_GET_ACCESS: 1,
     LOADING: 2,
     RODUCTS_REQUEST: 3,
-    FAILED_DB_CONNECTION: 4
+    FAILED_DB_CONNECTION: 4,
+    SIGN_IN: 5
 }

@@ -120,9 +120,9 @@ class App extends Component {
             </div>
             <div ref={el => this.$nav = $(el)} className="content hided">
                 <ProductsFilter 
-                    navToggle={() => this.navToggle()}
+                    navToggle={() => this.navToggler()}
                 />
-            </div>      
+            </div>  
         </div>
     );
   }

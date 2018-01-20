@@ -1,0 +1,23 @@
+.auth-form{
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    min-width: 5rem;
+}
+    
+    .auth-form .lower{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-around;
+    }
+    .auth-form .lower .divider{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+@media screen and (width:760px) {
+    .auth-form{
+        width: 100%;
+    }
+}
