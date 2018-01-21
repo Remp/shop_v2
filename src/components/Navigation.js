@@ -7,8 +7,7 @@ import $ from 'jquery';
 class Navigation extends Component{
     render(){
         return (
-            <div className='navigation'>
-                <div className="navbar">
+            <div className="navbar">
                     <div className="nav-logo"><a href="#">The beast market</a></div>
                     <div className="nav-menu">
                         <ul ref={el => this.menuBar = el}>
@@ -35,7 +34,6 @@ class Navigation extends Component{
                         <div className="nav-login-user">Log in</div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

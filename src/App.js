@@ -9,8 +9,16 @@ import {ProductListFlux} from './containers/ProductList';
 import {ProductList} from './containers/ProductList';
 import PropTypes from 'prop-types';
 import './styles/Navigation.css';
+import AuthForm from './containers/AuthForm';
+import interactions from './interactions';
 
 class App extends Component { 
+    constructor(){
+        super();
+        this.state = {
+            isAuthFormExpanded: false
+        }
+    }
     static contextTypes = {
         router: PropTypes.func.isRequired
     }
@@ -56,7 +64,11 @@ class App extends Component {
         const {history} = this.context.router;
         history.push(way);
     }
-    
+    toggleAuthForm(){
+        this.setState({
+            isAuthFormExpanded: !this.state.isAuthFormExpanded
+        })
+    }
     render() {
         return (
         <div className="App">
@@ -84,7 +96,10 @@ class App extends Component {
                             </li>
                         </ul>
                     </div>
-                    <div className="nav-login">
+                    <div 
+                        onClick={() => this.toggleAuthForm()} 
+                        className={this.state.isAuthFormExpanded ? 'nav-login checked' : 'nav-login'}
+                    >
                         <div className="nav-login-avatar"></div>
                         <div className="nav-login-user">Log in</div>
                     </div>
@@ -123,6 +138,16 @@ class App extends Component {
                     navToggle={() => this.navToggler()}
                 />
             </div>  
+            {
+                this.state.isAuthFormExpanded
+                ?
+                <AuthForm 
+                    isExpanded={this.state.isAuthFormExpanded}
+                />
+                : 
+                null
+            }
+           
         </div>
     );
   }

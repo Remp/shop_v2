@@ -12,6 +12,16 @@ export default {
             type: Constants.RODUCTS_REQUEST,
             data: parseMongo(check_list)
         })
+    },
+    signIn(l, p){
+        store.dispatch({
+            type: Constants.SIGN_IN_LOADING
+        })
+        store.dispatch({
+            type: Constants.SIGN_IN,
+            login: login,
+            password: psw
+        })
     }
 }
 //парсит значения типа '12 - 13' в 'between 12 and 13', 'lt 13' в '< 13', 'gt 13' в '> 13'

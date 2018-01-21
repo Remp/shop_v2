@@ -4,7 +4,6 @@
     box-sizing: content-box;
 }
 .navigation{
-    color:white; 
     /* display: flex; */
     flex-direction: column;
     align-items: stretch; 
@@ -16,7 +15,8 @@
    align-items: stretch; 
    background: #212836;
    padding: 0 0.8em;
-   height: 8vh;
+   height: 3rem;
+   color:white; 
 }
 .nav-logo{
     font-family: Pacifico;
@@ -35,6 +35,15 @@
     .nav-logo > a:hover{
         color: #EB1717;
     }
+.nav-login{
+    cursor: pointer;
+}
+.nav-login:hover{
+    color: #EB1717;
+}
+.nav-login.checked{
+    color: #EB1717;
+}
 .nav-login > a{
         text-decoration: none;
         color: white;

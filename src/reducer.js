@@ -3,6 +3,8 @@ import {Map, List, fromJS} from 'immutable';
 
 const def = fromJS({
     user: '',
+    isUserLoading: false,
+    isProductsLoading: false,
     products: [{
         id: 1,
         brand: 'hp',

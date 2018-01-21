@@ -1,7 +1,8 @@
 export default {
     PRODUCTS_GET_ACCESS: 1,
-    LOADING: 2,
+    PRODUCTS_LOADING: 2,
     RODUCTS_REQUEST: 3,
     FAILED_DB_CONNECTION: 4,
-    SIGN_IN: 5
+    SIGN_IN: 5,
+    SIGN_IN_LOADING: 6
 }

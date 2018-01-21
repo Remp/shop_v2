@@ -3,6 +3,7 @@ import AuthFormComponent from '../components/AuthForm';
 import store from '../store';
 import Constants from '../Constants';
 import {connect} from 'react-redux';
+import interactions from '../interactions';
 
 class AuthForm extends Component{
     constructor(){
@@ -10,7 +11,6 @@ class AuthForm extends Component{
         this.state = {
             loginValue: '',
             passwordValue: '',
-            isExpanded: false
         }
     }
     onLogin_change(e){
@@ -24,22 +24,14 @@ class AuthForm extends Component{
         })
     }
     onSignIn(){
-        store.dispatch({
-            type: Constants.SIGN_IN,
-            login: this.state.loginValue,
-            password: this.state.passwordValue
-        })
+        interactions.signIn(this.state.loginValue, this.state.passwordValue);
     }
     render(){
         return (
-            this.props.user 
-            ?
-            null
-            :
             <AuthFormComponent
                 loginValue={this.state.loginValue}
                 passwordValue={this.state.passwordValue}
-                isExpanded={this.state.isExpanded}
+                isExpanded={this.props.isExpanded}
                 onLogin_change={e => this.onLogin_change(e)}
                 onPassword_change={e => this.onPassword_change(e)}
                 onSignIn={() => this.onSignIn()}
@@ -53,3 +45,4 @@ function stateToProps(state){
         user: state.user
     }
 }
+export default connect(stateToProps)(AuthForm);
