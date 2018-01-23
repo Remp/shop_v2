@@ -26,6 +26,9 @@ class AuthForm extends Component{
     onSignIn(){
         interactions.signIn(this.state.loginValue, this.state.passwordValue);
     }
+    onSignUp(){
+        interactions.signUp(this.state.loginValue, this.state.passwordValue);
+    }
     render(){
         return (
             <AuthFormComponent

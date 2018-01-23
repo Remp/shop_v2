@@ -4,5 +4,10 @@ export default {
     RODUCTS_REQUEST: 3,
     FAILED_DB_CONNECTION: 4,
     SIGN_IN: 5,
-    SIGN_IN_LOADING: 6
+    SIGN_IN_LOADING: 6,
+    SIGN_IN_ACCESS: 7,
+    SIGN_IN_FAIL: 8,
+    SIGN_UP: 9,
+    SIGN_UP_ACCESS: 10,
+    SIGN_UP_FAIL: 11
 }

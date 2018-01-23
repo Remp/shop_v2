@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Slider from './Slider';
-import ProductDescription from './ProductDescription';
+import ProductDescription from './ProductDescription.1.js';
 import 'font-awesome/css/font-awesome.min.css';
 import '../styles/ProductPage.css';
 

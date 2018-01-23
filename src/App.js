@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import Navigation from './containers/Navigation';
+import Navigation from './components/Navigation';
 import {Route, Switch} from 'react-router-dom';
 import ProductsFilter from './containers/ProductsFilter';
 import ProductPage from './containers/ProductPage';
@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import './styles/Navigation.css';
 import AuthForm from './containers/AuthForm';
 import interactions from './interactions';
+import 'font-awesome/css/font-awesome.min.css';
 
 class App extends Component { 
     constructor(){
@@ -23,8 +24,8 @@ class App extends Component {
         router: PropTypes.func.isRequired
     }
     //просто показывает/прячем фильтр
-    navToggler(e){
-        $(e.target).toggleClass('checked');
+    navToggler($filter){
+        $filter.toggleClass('checked');
         this.$nav.toggleClass('hided');
         this.$other.toggleClass('hided');
     }
@@ -72,39 +73,12 @@ class App extends Component {
     render() {
         return (
         <div className="App">
-            <div className='navigation'>
-                <div className="navbar">
-                    <div className="nav-logo"><a href="#">The beast market</a></div>
-                    <div className="nav-menu">
-                        <ul ref={el => this.menuBar = el}>
-                            <li 
-                                className='nav-item c'
-                                onClick={(e) => this.navToggler(e)}
-                                style={{
-                                    borderTop: 'transparent'
-                                }}                               
-                            >
-                                Filter
-                            </li>
-                            <li className='divider'></li>
-                            <li 
-                                className='nav-item' 
-                                onClick={(e) => this.pushTo('/viewed')}
-                                id='viewed'
-                            >
-                                Viewed
-                            </li>
-                        </ul>
-                    </div>
-                    <div 
-                        onClick={() => this.toggleAuthForm()} 
-                        className={this.state.isAuthFormExpanded ? 'nav-login checked' : 'nav-login'}
-                    >
-                        <div className="nav-login-avatar"></div>
-                        <div className="nav-login-user">Log in</div>
-                    </div>
-                </div>
-            </div>
+            <Navigation
+                navToggler={(f) => this.navToggler(f)}
+                pushTo={(way) => this.pushTo(way)}
+                toggleAuthForm={() => this.toggleAuthForm()}
+                isAuthFormExpanded={this.state.isAuthFormExpanded}
+            />
             <div ref={el => this.$other = $(el)} className="content">
                 <Switch>
                     <Route 

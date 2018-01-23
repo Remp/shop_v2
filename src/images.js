@@ -4,5 +4,8 @@ export default {
     'hp probook 4540s': [
         img1,
         img2
+    ],
+    'asus zenbook': [
+        img1, img2
     ]
 }

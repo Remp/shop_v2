@@ -13,9 +13,13 @@ export default class AuthForm extends Component{
             opacity: 0
         });
         this.$form.animate({
+            top: navHeight / 2 + 'px',
+            opacity: 0
+        }, 75);
+        this.$form.animate({
             top: navHeight + 'px',
             opacity: 1
-        }, 150)
+        })
     }
     render(){
         return (

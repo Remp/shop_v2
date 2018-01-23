@@ -1,40 +1,63 @@
 import React, { Component } from 'react';
-import ProductsPanel from '../containers/ProductsFilter';
 import '../styles/Navigation.css';
-import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import $ from 'jquery';
 
 class Navigation extends Component{
     render(){
         return (
-            <div className="navbar">
+            <div className='navigation'>
+                <div className="navbar">
                     <div className="nav-logo"><a href="#">The beast market</a></div>
                     <div className="nav-menu">
                         <ul ref={el => this.menuBar = el}>
                             <li 
-                                className={this.props.whatChecked === 'filter' ? 'nav-item checked': 'nav-item' }
-                                onClick={(e) => this.props.navToggler(e)}
+                                className='nav-item c'
+                                onClick={() => this.props.navToggler(this.$filter)}
                                 style={{
                                     borderTop: 'transparent'
-                                }}
+                                }}   
+                                ref={el => this.$filter = $(el)}                            
                             >
-                                Filter
+                                <i class="fa fa-filter" aria-hidden="true"></i>
                             </li>
                             <li className='divider'></li>
                             <li 
-                                className={this.props.whatChecked === 'viewed' ? 'nav-item checked': 'nav-item' } 
+                                className='nav-item' 
+                                onClick={(e) => this.props.pushTo('/products')}
+                                id='products'
+                            >
+                                Products
+                            </li>
+                            <li className='divider'></li>
+                            <li 
+                                className='nav-item' 
                                 onClick={(e) => this.props.pushTo('/viewed')}
+                                id='viewed'
                             >
                                 Viewed
                             </li>
                         </ul>
                     </div>
-                    <div className="nav-login">
+                    <div 
+                        onClick={() => this.props.toggleAuthForm()} 
+                        className={this.props.isAuthFormExpanded ? 'nav-login checked' : 'nav-login'}
+                    >
                         <div className="nav-login-avatar"></div>
-                        <div className="nav-login-user">Log in</div>
+                        <div className="nav-login-user">
+                            {
+                                this.props.username || 'Sign in'
+                            }
+                        </div>
                     </div>
                 </div>
+            </div>
         )
     }
 }
-export default Navigation;
+function stateToProps(state){
+    return{
+        username: state.user.name
+    }
+}
+export default connect()(Navigation);

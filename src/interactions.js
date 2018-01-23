@@ -19,8 +19,18 @@ export default {
         })
         store.dispatch({
             type: Constants.SIGN_IN,
-            login: login,
-            password: psw
+            login: l,
+            password: p
+        })
+    },
+    signUp(l, p){
+        store.dispatch({
+            type: Constants.SIGN_IN_LOADING
+        })
+        store.dispatch({
+            type: Constants.SIGN_UP,
+            login: l,
+            password: p
         })
     }
 }
@@ -43,6 +53,8 @@ function parse(str){
         $lt: vals[1]
     }
 }
+
+//парсит check_list в объект-фильтр для mongodb
 function parseMongo(check_list){
     let collection = '';
     const filter = {};
