@@ -1,19 +1,45 @@
 .slider{
+    flex: 1;
     display: flex;
-    justify-content: space-between;
-    background-position: center;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    flex:1;
+    align-items: center;
+    overflow: hidden;
 }
-    .slider div{
-        font-size: 1.5rem;
-        padding: 0 0.5rem;
+    .slider .controllers{
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+    }
+    .slider .controllers .controller{
+        outline: none;
+        border: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 1rem;
+        z-index: 9999;
+        background-color: transparent;
+        font-size: 1.8rem;
         cursor: pointer;
     }
-    .slider div:hover{
+    .slider .controllers .controller:hover{
         color: #EB1717;
+    }
+    .slider .scroller{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        width: 100%;
+        transition: transform 0.2s ease-in-out;
+    }
+    .slider .scroller .item-scroll{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .slider .scroller img{
+        width: 100%
     }

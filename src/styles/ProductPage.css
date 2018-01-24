@@ -30,3 +30,19 @@
             flex-direction: column;
         }
     }
+    .product-page .turn-back{
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: #313131;
+        padding: 0.5rem;
+        background-color: #0000000a;
+        font-size: 2rem;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .product-page .turn-back:hover{
+        color: #EB1717;
+    }
